@@ -27,9 +27,12 @@ resource "google_sql_database_instance" "instance" {
       ipv4_enabled = true
       require_ssl  = true
     }
-    maintenance_window {
-      day  = 1
-      hour = 4
+    dynamic "maintenance_window" {
+      for_each = var.primary_instance_name == null ? [0] : []
+      content {
+        day  = 1
+        hour = 4
+      }
     }
   }
 }
