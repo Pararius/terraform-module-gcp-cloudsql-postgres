@@ -1,6 +1,7 @@
 resource "google_sql_database_instance" "instance" {
   database_version     = var.database_version
   name                 = var.instance_name
+  deletion_protection  = var.deletion_protection
   master_instance_name = var.primary_instance_name
   settings {
     availability_type     = var.highly_available == true ? "REGIONAL" : "ZONAL"

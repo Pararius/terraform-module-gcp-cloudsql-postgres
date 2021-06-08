@@ -16,6 +16,11 @@ variable "databases" {
   type = list(string)
 }
 
+variable "deletion_protection" {
+  type    = bool
+  default = true
+}
+
 variable "environment" {
   type = string
   validation {
