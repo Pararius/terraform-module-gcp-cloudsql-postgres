@@ -1,3 +1,11 @@
+variable "authorized_networks" {
+  type = list(object({
+    name    = string
+    network = string
+  }))
+  default = []
+}
+
 variable "backup_config" {
   type = object({
     binary_log_enabled = optional(bool)
