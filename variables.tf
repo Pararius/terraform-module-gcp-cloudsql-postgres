@@ -77,10 +77,3 @@ variable "tier" {
   type    = string
   default = null
 }
-
-variable "users" {
-  type = list(object({
-    name = string
-    host = optional(string)
-  }))
-}

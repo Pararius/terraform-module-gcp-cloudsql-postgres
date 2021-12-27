@@ -13,5 +13,5 @@ locals {
   storage_size  = var.storage_autoresize == true ? null : var.storage_size
   tier          = var.tier != null ? var.tier : local.default_tier
 
-  postgres_users = local.db_engine != { for user in concat(var.users, [{ name = "postgres" }]) : user.name => user }
+  admin_user = "postgres"
 }

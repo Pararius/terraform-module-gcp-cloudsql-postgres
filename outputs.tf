@@ -8,7 +8,7 @@ output "ip_addresses" {
   }
 }
 
-output "passwords" {
+output "admin_user_password" {
   sensitive = true
-  value     = { for user, pwd in random_password.sql_user : user => pwd.result }
+  value     = random_password.admin_user.result
 }
