@@ -12,9 +12,8 @@ resource "google_sql_database_instance" "instance" {
     tier                  = local.tier
     user_labels           = local.labels
     backup_configuration {
-      binary_log_enabled = local.backup_config.binary_log_enabled
-      enabled            = local.backup_config.enabled
-      location           = local.backup_config.location
+      enabled  = local.backup_config.enabled
+      location = local.backup_config.location
     }
     dynamic "database_flags" {
       for_each = var.flags

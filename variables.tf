@@ -8,9 +8,8 @@ variable "authorized_networks" {
 
 variable "backup_config" {
   type = object({
-    binary_log_enabled = optional(bool)
-    enabled            = optional(bool)
-    location           = optional(string)
+    enabled  = optional(bool)
+    location = optional(string)
   })
   default = {
   }
@@ -77,11 +76,4 @@ variable "storage_size" {
 variable "tier" {
   type    = string
   default = null
-}
-
-variable "users" {
-  type = list(object({
-    name     = string
-    host     = optional(string)
-  }))
 }
