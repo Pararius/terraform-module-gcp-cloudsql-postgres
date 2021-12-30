@@ -23,20 +23,25 @@ resource "google_sql_database_instance" "instance" {
         value = flag.value
       }
     }
-    ip_configuration {
-      ipv4_enabled = true
-      require_ssl  = true
 
-      dynamic "authorized_networks" {
-        for_each = var.authorized_networks
-        iterator = network
+    dynamic "ip_configuration" {
+      for_each = local.externally_accessible == true ? [0] : []
+      content {
+        ipv4_enabled = true
+        require_ssl  = true
 
-        content {
-          name  = network.value.name
-          value = network.value.network
+        dynamic "authorized_networks" {
+          for_each = var.authorized_networks
+          iterator = network
+
+          content {
+            name  = network.value.name
+            value = network.value.network
+          }
         }
       }
     }
+
     dynamic "maintenance_window" {
       for_each = var.primary_instance_name == null ? [0] : []
       content {

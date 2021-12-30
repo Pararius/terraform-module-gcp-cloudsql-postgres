@@ -36,6 +36,11 @@ variable "environment" {
   }
 }
 
+variable "externally_accessible" {
+  type    = bool
+  default = false
+}
+
 variable "flags" {
   type    = map(string)
   default = {}
