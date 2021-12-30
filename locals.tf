@@ -1,11 +1,9 @@
 locals {
   default_backup_config = {
-    enabled  = var.highly_available == true ? true : false
+    enabled  = var.highly_available
     location = "eu"
   }
-  default_labels = {
-    env = var.environment
-  }
+  default_labels = { env = var.environment }
 
   backup_config         = defaults(var.backup_config, local.default_backup_config)
   externally_accessible = (var.externally_accessible || length(var.authorized_networks) > 0) ? true : false
