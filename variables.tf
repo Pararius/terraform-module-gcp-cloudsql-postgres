@@ -1,7 +1,8 @@
 variable "authorized_networks" {
   type = list(object({
-    name    = string
-    network = string
+    name            = string
+    network         = string
+    expiration_time = optional(string)
   }))
   default = []
 }

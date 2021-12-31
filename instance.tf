@@ -63,7 +63,7 @@ resource "google_sql_database_instance" "instance" {
         iterator = network
 
         content {
-          expiration_time = null
+          expiration_time = network.value.expiration_time
           name            = network.value.name
           value           = network.value.network
         }
