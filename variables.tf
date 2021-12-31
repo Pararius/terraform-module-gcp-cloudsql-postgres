@@ -8,10 +8,15 @@ variable "authorized_networks" {
 
 variable "backup_config" {
   type = object({
-    enabled  = optional(bool)
-    location = optional(string)
+    enabled                        = optional(bool)
+    start_time                     = optional(string)
+    point_in_time_recovery_enabled = optional(bool)
+    location                       = optional(string)
+    transaction_log_retention_days = optional(number)
+    retained_backups               = optional(number)
   })
   default = {
+    enabled = false
   }
 }
 
@@ -47,6 +52,16 @@ variable "highly_available" {
 
 variable "instance_name" {
   type = string
+}
+
+variable "insights_config" {
+  type = object({
+    query_insights_enabled  = bool
+    query_string_length     = optional(number)
+    record_application_tags = optional(bool)
+    record_client_address   = optional(bool)
+  })
+  default = null
 }
 
 variable "labels" {
