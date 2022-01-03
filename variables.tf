@@ -65,6 +65,11 @@ variable "insights_config" {
   }
 }
 
+variable "ipv4_enabled" {
+  type    = bool
+  default = false
+}
+
 variable "labels" {
   type    = map(string)
   default = {}
@@ -84,6 +89,11 @@ variable "maintenance_window" {
 }
 
 variable "primary_instance_name" {
+  type    = string
+  default = null
+}
+
+variable "private_network" {
   type    = string
   default = null
 }
