@@ -16,9 +16,7 @@ variable "backup_config" {
     transaction_log_retention_days = optional(number)
     retained_backups               = optional(number)
   })
-  default = {
-    enabled = false
-  }
+  default = {}
 }
 
 variable "database_version" {

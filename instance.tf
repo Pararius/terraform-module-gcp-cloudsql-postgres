@@ -21,13 +21,9 @@ resource "google_sql_database_instance" "instance" {
       point_in_time_recovery_enabled = local.backup_config.point_in_time_recovery_enabled
       location                       = local.backup_config.location
       transaction_log_retention_days = local.backup_config.transaction_log_retention_days
-      dynamic "backup_retention_settings" {
-        for_each = local.needs_backup_retention_settings
-
-        content {
-          retained_backups = local.backup_config.retained_backups
-          retention_unit   = "COUNT"
-        }
+      backup_retention_settings {
+        retained_backups = local.backup_config.retained_backups
+        retention_unit   = "COUNT"
       }
     }
 

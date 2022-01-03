@@ -1,7 +1,10 @@
 locals {
   default_backup_config = {
-    enabled  = var.highly_available == true ? true : false
-    location = "eu"
+    enabled                        = var.highly_available
+    location                       = "eu"
+    point_in_time_recovery_enabled = false
+    retained_backups               = 7
+    transaction_log_retention_days = 7
   }
   default_insights_config = {
     query_string_length     = 1024
@@ -24,6 +27,5 @@ locals {
 
   # Helper vars for optional blocks. Will either be an empty set (no) or a
   # single item set (yes)
-  needs_backup_retention_settings = local.backup_config.retained_backups == null ? [] : [0]
-  needs_maintenance_window        = var.primary_instance_name == null ? [] : [0]
+  needs_maintenance_window = var.primary_instance_name == null ? [] : [0]
 }
