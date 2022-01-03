@@ -14,4 +14,10 @@ locals {
   tier          = var.tier != null ? var.tier : local.default_tier
 
   admin_user = "postgres"
+
+  # Helper vars for optional blocks. Will either be an empty set (no) or a
+  # single item set (yes)
+  needs_backup_retention_settings = local.backup_config.retained_backups == null ? [] : [0]
+  needs_insights_config           = var.insights_config == null ? [] : [0]
+  needs_maintenance_window        = var.primary_instance_name == null ? [] : [0]
 }

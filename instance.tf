@@ -22,7 +22,7 @@ resource "google_sql_database_instance" "instance" {
       location                       = local.backup_config.location
       transaction_log_retention_days = local.backup_config.transaction_log_retention_days
       dynamic "backup_retention_settings" {
-        for_each = compact([local.backup_config.retained_backups])
+        for_each = local.needs_backup_retention_settings
 
         content {
           retained_backups = local.backup_config.retained_backups
@@ -42,7 +42,7 @@ resource "google_sql_database_instance" "instance" {
     }
 
     dynamic "insights_config" {
-      for_each = var.insights_config == null ? [] : [0]
+      for_each = local.needs_insights_config
 
       content {
         query_insights_enabled  = var.insights_config.query_insights_enabled
@@ -76,7 +76,7 @@ resource "google_sql_database_instance" "instance" {
     }
 
     dynamic "maintenance_window" {
-      for_each = compact([var.primary_instance_name])
+      for_each = local.needs_maintenance_window
 
       content {
         day          = 1
