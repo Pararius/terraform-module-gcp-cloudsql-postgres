@@ -38,10 +38,10 @@ resource "google_sql_database_instance" "instance" {
     }
 
     insights_config {
-      query_insights_enabled  = var.insights_config.query_insights_enabled
-      query_string_length     = var.insights_config.query_string_length
-      record_application_tags = var.insights_config.record_application_tags
-      record_client_address   = var.insights_config.record_client_address
+      query_insights_enabled  = local.insights_config.query_insights_enabled
+      query_string_length     = local.insights_config.query_string_length
+      record_application_tags = local.insights_config.record_application_tags
+      record_client_address   = local.insights_config.record_client_address
     }
 
     ip_configuration {
