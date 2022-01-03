@@ -62,10 +62,10 @@ resource "google_sql_database_instance" "instance" {
       }
     }
 
-    location_preference {
-      follow_gae_application = null
-      zone                   = null
-    }
+    # location_preference {
+    #   follow_gae_application = null
+    #   zone                   = null
+    # }
 
     dynamic "maintenance_window" {
       for_each = local.needs_maintenance_window
