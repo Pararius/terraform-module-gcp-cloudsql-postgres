@@ -67,7 +67,7 @@ variable "insights_config" {
 
 variable "ipv4_enabled" {
   type    = bool
-  default = false
+  default = true
 }
 
 variable "labels" {
