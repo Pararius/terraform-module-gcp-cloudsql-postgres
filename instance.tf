@@ -71,9 +71,9 @@ resource "google_sql_database_instance" "instance" {
       for_each = local.needs_maintenance_window
 
       content {
-        day          = 1
-        hour         = 4
-        update_track = "stable"
+        day          = var.maintenance_window.day
+        hour         = var.maintenance_window.hour
+        update_track = lookup(var.maintenance_window, "update_track", "stable")
       }
     }
   }

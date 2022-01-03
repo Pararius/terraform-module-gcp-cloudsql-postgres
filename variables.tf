@@ -70,6 +70,19 @@ variable "labels" {
   default = {}
 }
 
+variable "maintenance_window" {
+  type = object({
+    day          = number
+    hour         = number
+    update_track = optional(string)
+  })
+  default = {
+    day          = 1
+    hour         = 4
+    update_track = "stable"
+  }
+}
+
 variable "primary_instance_name" {
   type    = string
   default = null
