@@ -41,15 +41,11 @@ resource "google_sql_database_instance" "instance" {
       }
     }
 
-    dynamic "insights_config" {
-      for_each = local.needs_insights_config
-
-      content {
-        query_insights_enabled  = var.insights_config.query_insights_enabled
-        query_string_length     = lookup(var.insights_config, "query_string_length", 1024)
-        record_application_tags = lookup(var.insights_config, "record_application_tags", false)
-        record_client_address   = lookup(var.insights_config, "record_client_address", false)
-      }
+    insights_config {
+      query_insights_enabled  = var.insights_config.query_insights_enabled
+      query_string_length     = var.insights_config.query_string_length
+      record_application_tags = var.insights_config.record_application_tags
+      record_client_address   = var.insights_config.record_client_address
     }
 
     ip_configuration {

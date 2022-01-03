@@ -62,7 +62,9 @@ variable "insights_config" {
     record_application_tags = optional(bool)
     record_client_address   = optional(bool)
   })
-  default = null
+  default = {
+    query_insights_enabled = true
+  }
 }
 
 variable "labels" {
