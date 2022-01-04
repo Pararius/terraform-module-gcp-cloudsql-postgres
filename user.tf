@@ -7,7 +7,7 @@ resource "google_sql_user" "admin_user" {
 
   name     = local.admin_user
   password = random_password.admin_user.result
-  type     = "BUILT_IN"
+  type     = ""
 
   deletion_policy = null
 }
