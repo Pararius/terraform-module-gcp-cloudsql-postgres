@@ -1,5 +1,4 @@
 locals {
-
   default_labels = {
     env = var.environment
   }
