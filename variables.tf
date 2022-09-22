@@ -9,7 +9,7 @@ variable "authorized_networks" {
 
 variable "backup_config" {
   type = object({
-    enabled                        = optional(bool, var.highly_available)
+    enabled                        = optional(bool)
     start_time                     = optional(string)
     point_in_time_recovery_enabled = optional(bool, false)
     location                       = optional(string, "eu")

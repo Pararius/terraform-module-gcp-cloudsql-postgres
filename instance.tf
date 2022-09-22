@@ -16,7 +16,7 @@ resource "google_sql_database_instance" "instance" {
     user_labels           = local.labels
 
     backup_configuration {
-      enabled                        = var.backup_config.enabled
+      enabled                        = coalesce(var.backup_config.enabled, var.highly_available)
       start_time                     = var.backup_config.start_time
       point_in_time_recovery_enabled = var.backup_config.point_in_time_recovery_enabled
       location                       = var.backup_config.location
