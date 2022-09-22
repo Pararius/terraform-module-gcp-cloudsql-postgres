@@ -16,13 +16,13 @@ resource "google_sql_database_instance" "instance" {
     user_labels           = local.labels
 
     backup_configuration {
-      enabled                        = local.backup_config.enabled
-      start_time                     = local.backup_config.start_time
-      point_in_time_recovery_enabled = local.backup_config.point_in_time_recovery_enabled
-      location                       = local.backup_config.location
-      transaction_log_retention_days = local.backup_config.transaction_log_retention_days
+      enabled                        = var.backup_config.enabled
+      start_time                     = var.backup_config.start_time
+      point_in_time_recovery_enabled = var.backup_config.point_in_time_recovery_enabled
+      location                       = var.backup_config.location
+      transaction_log_retention_days = var.backup_config.transaction_log_retention_days
       backup_retention_settings {
-        retained_backups = local.backup_config.retained_backups
+        retained_backups = var.backup_config.retained_backups
         retention_unit   = "COUNT"
       }
     }
@@ -38,10 +38,10 @@ resource "google_sql_database_instance" "instance" {
     }
 
     insights_config {
-      query_insights_enabled  = local.insights_config.query_insights_enabled
-      query_string_length     = local.insights_config.query_string_length
-      record_application_tags = local.insights_config.record_application_tags
-      record_client_address   = local.insights_config.record_client_address
+      query_insights_enabled  = var.insights_config.query_insights_enabled
+      query_string_length     = var.insights_config.query_string_length
+      record_application_tags = var.insights_config.record_application_tags
+      record_client_address   = var.insights_config.record_client_address
     }
 
     ip_configuration {
