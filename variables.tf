@@ -75,6 +75,11 @@ variable "labels" {
   default = {}
 }
 
+variable "legacy_users" {
+  type    = list(string)
+  default = []
+}
+
 variable "maintenance_window" {
   type = object({
     day          = number
