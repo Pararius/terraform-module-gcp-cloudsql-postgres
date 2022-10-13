@@ -11,3 +11,17 @@ resource "google_sql_user" "admin_user" {
 
   deletion_policy = null
 }
+
+resource "random_password" "migrated_users" {
+  length = 48
+}
+
+resource "google_sql_user" "migrated_users" {
+  for_each = toset(var.migrated_users)
+
+  instance        = google_sql_database_instance.instance.name
+  name            = each.value
+  password        = random_password.migrated_users[each.value].result
+  type            = ""
+  deletion_policy = null
+}

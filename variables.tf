@@ -88,6 +88,11 @@ variable "maintenance_window" {
   }
 }
 
+variable "migrated_users" {
+  type    = list(string)
+  default = []
+}
+
 variable "primary_instance_name" {
   type    = string
   default = null

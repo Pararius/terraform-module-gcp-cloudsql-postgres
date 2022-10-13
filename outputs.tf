@@ -12,3 +12,8 @@ output "admin_user_password" {
   sensitive = true
   value     = random_password.admin_user.result
 }
+
+output "migrated_user_passwords" {
+  sensitive = true
+  value     = { for user in var.migrated_users : user => random_password.migrated_users[user].result }
+}
