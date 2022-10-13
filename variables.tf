@@ -75,6 +75,11 @@ variable "labels" {
   default = {}
 }
 
+variable "legacy_users" {
+  type    = list(string)
+  default = []
+}
+
 variable "maintenance_window" {
   type = object({
     day          = number
@@ -86,11 +91,6 @@ variable "maintenance_window" {
     hour         = 4
     update_track = "stable"
   }
-}
-
-variable "migrated_users" {
-  type    = list(string)
-  default = []
 }
 
 variable "primary_instance_name" {
