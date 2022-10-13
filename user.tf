@@ -7,7 +7,7 @@ resource "google_sql_user" "admin_user" {
 
   name     = local.admin_user
   password = random_password.admin_user.result
-  type     = "" # Equivalent of "BUILT_IN"
+  type     = "BUILT_IN"
 
   deletion_policy = null
 }
@@ -23,6 +23,6 @@ resource "google_sql_user" "legacy_users" {
   instance        = google_sql_database_instance.instance.name
   name            = each.value
   password        = random_password.legacy_users[each.value].result
-  type            = ""
+  type            = "BUILT_IN"
   deletion_policy = null
 }
