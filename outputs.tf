@@ -13,7 +13,7 @@ output "admin_user_password" {
   value     = random_password.admin_user.result
 }
 
-output "legacy_user_passwords" {
+output "legacy_users_passwords" {
   sensitive = true
   value     = { for user in var.legacy_users : user => random_password.legacy_users[user].result }
 }
