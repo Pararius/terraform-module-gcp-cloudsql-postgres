@@ -13,7 +13,8 @@ resource "google_sql_user" "admin_user" {
 }
 
 resource "random_password" "migrated_users" {
-  length = 48
+  for_each = toset(var.migrated_users)
+  length   = 48
 }
 
 resource "google_sql_user" "migrated_users" {
