@@ -19,7 +19,7 @@ resource "google_sql_database_instance" "instance" {
       enabled                        = coalesce(var.backup_config.enabled, var.highly_available)
       start_time                     = var.backup_config.start_time
       point_in_time_recovery_enabled = var.backup_config.point_in_time_recovery_enabled
-      location                       = var.backup_config.location
+      location                       = var.backup_config.enabled == true ? var.backup_config.location : null
       transaction_log_retention_days = var.backup_config.transaction_log_retention_days
       backup_retention_settings {
         retained_backups = var.backup_config.retained_backups
