@@ -15,19 +15,15 @@ resource "google_sql_database_instance" "instance" {
     tier                  = local.tier
     user_labels           = local.labels
 
-    dynamic "backup_configuration" {
-      for_each = local.needs_backup_configuration
-
-      content {
-        enabled                        = coalesce(var.backup_config.enabled, var.highly_available)
-        start_time                     = var.backup_config.start_time
-        point_in_time_recovery_enabled = var.backup_config.point_in_time_recovery_enabled
-        location                       = coalesce(var.backup_config.enabled, var.highly_available) ? var.backup_config.location : null
-        transaction_log_retention_days = var.backup_config.transaction_log_retention_days
-        backup_retention_settings {
-          retained_backups = var.backup_config.retained_backups
-          retention_unit   = "COUNT"
-        }
+    backup_configuration {
+      enabled                        = coalesce(var.backup_config.enabled, var.highly_available)
+      start_time                     = var.backup_config.start_time
+      point_in_time_recovery_enabled = var.backup_config.point_in_time_recovery_enabled
+      location                       = coalesce(var.backup_config.enabled, var.highly_available) ? var.backup_config.location : null
+      transaction_log_retention_days = var.backup_config.transaction_log_retention_days
+      backup_retention_settings {
+        retained_backups = var.backup_config.retained_backups
+        retention_unit   = "COUNT"
       }
     }
 
