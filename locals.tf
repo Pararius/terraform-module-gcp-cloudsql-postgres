@@ -12,6 +12,5 @@ locals {
 
   # Helper vars for optional blocks. Will either be an empty set (no) or a
   # single item set (yes)
-  needs_backup_configuration = var.primary_instance_name == null ? [0] : []
-  needs_maintenance_window   = var.primary_instance_name == null ? [0] : []
+  needs_maintenance_window = var.primary_instance_name == null ? [0] : []
 }
