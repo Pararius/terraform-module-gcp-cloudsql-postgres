@@ -1,8 +1,8 @@
 resource "google_sql_database_instance" "instance" {
   database_version     = var.database_version
-  name                 = var.instance_name
+  name                 = "${var.project_prefix}-${var.instance_name}"
   deletion_protection  = var.deletion_protection
-  master_instance_name = var.primary_instance_name
+  master_instance_name = "${var.primary_instance_name}" != null ? "${var.project_prefix}-${var.primary_instance_name}" : null
 
   settings {
     activation_policy     = "ALWAYS"
