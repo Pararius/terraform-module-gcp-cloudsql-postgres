@@ -121,3 +121,8 @@ variable "tier" {
   type    = string
   default = null
 }
+
+variable "project_prefix" {
+  type    = string
+  default = null
+}
