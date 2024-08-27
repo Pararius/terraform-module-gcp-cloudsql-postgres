@@ -48,7 +48,7 @@ resource "google_sql_database_instance" "instance" {
       ipv4_enabled    = var.ipv4_enabled
       private_network = var.private_network
 
-      require_ssl = true
+      ssl_mode = "TRUSTED_CLIENT_CERTIFICATE_REQUIRED"
 
       dynamic "authorized_networks" {
         for_each = var.authorized_networks
